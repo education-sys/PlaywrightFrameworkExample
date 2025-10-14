@@ -3,15 +3,24 @@ import { BasePage } from './BasePage';
 
 export class HomePage extends BasePage {
 
-  readonly mainLogo: Locator;
+  readonly productsLogo: Locator;
+  readonly addToCartProductButton : Locator;
+  readonly addToCartButton : Locator;
 
   constructor(page: Page) {
     super(page);
-    this.mainLogo = page.locator('#user-name');
+    this.productsLogo = page.getByText("Products");
+    this.addToCartProductButton = page.locator("#add-to-cart-sauce-labs-backpack");
+    this.addToCartButton = page.locator(".shopping_cart_link");
   }
 
-  async homePageOpen():Promise <void> {
-      await expect(this.mainLogo).toBeVisible();
+  async homePageOpen() {
+      await expect(this.productsLogo).toBeVisible();
+    }
+
+    async addToCartAction() {
+      await this.addToCartProductButton.click();
+      await this.addToCartButton.click();
     }
 
 }

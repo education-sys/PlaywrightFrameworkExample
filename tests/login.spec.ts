@@ -4,9 +4,12 @@ import { test, expect } from './BaseTest';
 // test.describe('Swag Labs - Login', () => {
 //test.describe() definiše suite (skup) testova — sličan konceptu “Test Suite” u TestNG-u
 
-  test('valid user can log in', async ({ loginPage }) => {
+
+//  U argumente test funkcije prosledjujemo objekte onih pages stranica koje koristimo u testu
+  test('valid user can log in', async ({ loginPage, homePage }) => {
     await loginPage.login('standard_user', 'secret_sauce');
     await loginPage.assertLoggedIn();
+    await homePage.homePageOpen();
   });
 
   test('shows error on invalid creds', async ({ loginPage }) => {

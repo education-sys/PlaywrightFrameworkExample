@@ -1,9 +1,13 @@
 import { test as base, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { HomePage } from '../pages/HomePage';
-import { ConfirmationPage } from '../pages/ConfirmationPage';
+import { CheckoutStepTwo } from '../pages/CheckoutStepTwo';
+import { CheckoutStepOne } from '../pages/CheckoutStepOne';
+import { CheckoutComplete } from '../pages/CheckoutComplete';
+import { CartPage } from '../pages/CartPage';
+import { ExampleFile } from '../pages/ExampleFile';
 //.. jer je nivo iznad
-//Uzimam iz @playwright/test i proširujem ga i nazivam base. Pravi se proširena verzija test funkcije, koja dodaje sopstvene fixture-e ili logiku.
+//Uzimam test iz @playwright/test i proširujem ga i nazivam base. Pravi se proširena verzija test funkcije, koja dodaje sopstvene fixture-e ili logiku.
 
 
 const BASE_URL = 'https://www.saucedemo.com/';
@@ -12,7 +16,11 @@ const BASE_URL = 'https://www.saucedemo.com/';
 type Fixtures = {
   loginPage: LoginPage;
   homePage: HomePage;
-  confirmationPage: ConfirmationPage;
+  checkoutStepTwo : CheckoutStepTwo;
+  checkoutStepOne : CheckoutStepOne;
+  checkoutComplete : CheckoutComplete;
+  cartPage : CartPage;
+  examplePage : ExampleFile
 };
 
 //Proširujemo test sa objektima pages klasa, koristimo Fixtures da se zna kog su tipa loginPage, homePage...
@@ -23,8 +31,20 @@ const test = base.extend<Fixtures>({
   homePage: async function ({ page }, use) {
     await use(new HomePage(page));
   },
-  confirmationPage: async function ({ page }, use) {
-    await use(new ConfirmationPage(page));
+  checkoutStepTwo: async function ({ page }, use) {
+    await use(new CheckoutStepTwo(page));
+  },
+  checkoutStepOne: async function ({ page }, use) {
+    await use(new CheckoutStepOne(page));
+  },
+  checkoutComplete: async function ({ page }, use) {
+    await use(new CheckoutComplete(page));
+  },
+  cartPage: async function ({ page }, use) {
+    await use(new CartPage(page));
+  },
+  examplePage: async function ({ page }, use) {
+    await use(new ExampleFile(page));
   },
 });
 
